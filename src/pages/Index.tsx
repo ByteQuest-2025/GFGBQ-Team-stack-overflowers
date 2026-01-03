@@ -4,7 +4,8 @@ import {
   FileText, Search, BarChart3, ArrowRight, CheckCircle2, 
   Droplets, Construction, Trash2, Lightbulb, Shield, 
   Stethoscope, GraduationCap, HelpCircle, Clock, Users, 
-  TrendingUp, Award, Star, ChevronRight
+  TrendingUp, Award, Star, ChevronRight, Upload, RefreshCw,
+  MessageCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +13,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { STATS, SAMPLE_COMPLAINTS } from "@/utils/sampleData";
 import { StatusBadge, UrgencyBadge } from "@/components/ui/urgency-badge";
-import mascotImage from "@/assets/mascot.png";
+import mascotImage from "@/assets/mascot-saree.png";
 
 const categories = [
   { icon: Droplets, name: "Water Supply", color: "bg-blue-500", count: 2341 },
@@ -50,101 +51,134 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 }
 };
 
+const heroActions = [
+  { 
+    title: "Register Grievance", 
+    icon: FileText, 
+    buttonText: "Register", 
+    href: "/register-complaint" 
+  },
+  { 
+    title: "Track Your Grievance", 
+    icon: RefreshCw, 
+    buttonText: "Track Now", 
+    href: "/track" 
+  },
+  { 
+    title: "Public Dashboard", 
+    icon: BarChart3, 
+    buttonText: "View Stats", 
+    href: "/public-stats" 
+  },
+];
+
 export default function Index() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/10 py-16 lg:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        
-        <div className="container relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-                Government Initiative
-              </div>
-              
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Your Grievances,
-                  <br />
-                  <span className="text-gradient">Our Redressal</span>
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-lg">
-                  AI-powered grievance management system that ensures your voice reaches the right authorities. 
-                  Fast, transparent, and efficient.
-                </p>
-              </div>
-
-              {/* Action Cards */}
-              <div className="grid sm:grid-cols-3 gap-4">
-                <Link to="/register-complaint" className="group">
-                  <Card className="h-full border-2 border-transparent hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer bg-card">
-                    <CardContent className="p-4 text-center space-y-2">
-                      <div className="w-12 h-12 mx-auto rounded-xl bg-gradient-primary flex items-center justify-center">
-                        <FileText className="w-6 h-6 text-primary-foreground" />
-                      </div>
-                      <h3 className="font-semibold">Register Grievance</h3>
-                      <p className="text-xs text-muted-foreground">Submit your complaint</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link to="/track" className="group">
-                  <Card className="h-full border-2 border-transparent hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer bg-card">
-                    <CardContent className="p-4 text-center space-y-2">
-                      <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center">
-                        <Search className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold">Track Status</h3>
-                      <p className="text-xs text-muted-foreground">Check your complaint</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-                <Link to="/public-stats" className="group">
-                  <Card className="h-full border-2 border-transparent hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer bg-card">
-                    <CardContent className="p-4 text-center space-y-2">
-                      <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center">
-                        <BarChart3 className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold">Dashboard</h3>
-                      <p className="text-xs text-muted-foreground">View public stats</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Right: Mascot */}
+      {/* Hero Section - Purple Background */}
+      <section className="relative bg-hero min-h-[500px] lg:min-h-[550px]">
+        <div className="container relative py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: Mascot */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative flex justify-center"
+              transition={{ duration: 0.6 }}
+              className="relative flex justify-center order-2 lg:order-1"
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-primary rounded-full blur-3xl opacity-20 scale-90" />
+                {/* Dark circle background */}
+                <div className="absolute inset-0 bg-[hsl(231,47%,25%)] rounded-full scale-110 -translate-y-4" />
                 <motion.img
                   src={mascotImage}
                   alt="NagarSevak Mascot"
-                  className="relative w-72 h-72 lg:w-96 lg:h-96 object-contain drop-shadow-2xl"
-                  animate={{ y: [0, -10, 0] }}
+                  className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-contain drop-shadow-2xl"
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
+                {/* Tagline badge */}
+                <motion.div 
+                  initial={{ scale: 0, rotate: -10 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.5, type: "spring" }}
+                  className="absolute -right-4 bottom-20 sm:bottom-28 lg:bottom-32"
+                >
+                  <div className="bg-warning text-warning-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg transform rotate-[-5deg]">
+                    <div className="flex flex-col items-center leading-tight">
+                      <span className="text-xs">जागो</span>
+                      <span className="text-base">नागरिक</span>
+                      <span className="text-xs">जागो</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right: Content & Action Cards */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8 order-1 lg:order-2"
+            >
+              {/* Heading */}
+              <div className="text-center lg:text-left">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-hero-foreground leading-tight italic">
+                  Your Grievances, Our Redressal
+                </h1>
+                <p className="mt-3 text-hero-foreground/80 text-lg">
+                  We are here to solve your grievances
+                </p>
+              </div>
+
+              {/* Action Cards - Horizontal Style */}
+              <div className="space-y-4">
+                {heroActions.map((action, i) => (
+                  <motion.div
+                    key={action.title}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                  >
+                    <Link to={action.href}>
+                      <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card border-0">
+                        <CardContent className="p-4 sm:p-5 flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-4">
+                            <div className="hidden sm:flex w-12 h-12 rounded-xl bg-primary/10 items-center justify-center">
+                              <action.icon className="w-6 h-6 text-primary" />
+                            </div>
+                            <h3 className="font-semibold text-lg text-card-foreground">
+                              {action.title}
+                            </h3>
+                          </div>
+                          <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground gap-2 shrink-0">
+                            <action.icon className="w-4 h-4" />
+                            {action.buttonText}
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
+
+        {/* WhatsApp FAB */}
+        <motion.a
+          href="https://wa.me/1800XXXXXXX"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.8, type: "spring" }}
+          className="fixed right-4 bottom-24 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
+        >
+          <MessageCircle className="w-7 h-7 text-white" fill="white" />
+        </motion.a>
       </section>
 
       {/* Stats Bar */}
@@ -202,7 +236,7 @@ export default function Index() {
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 text-center space-y-4">
                     <div className="relative w-16 h-16 mx-auto">
-                      <div className="absolute inset-0 bg-gradient-primary rounded-2xl opacity-10" />
+                      <div className="absolute inset-0 bg-primary rounded-2xl opacity-10" />
                       <div className="relative w-full h-full rounded-2xl border-2 border-primary/30 flex items-center justify-center">
                         <step.icon className="w-8 h-8 text-primary" />
                       </div>
@@ -345,7 +379,7 @@ export default function Index() {
                     </div>
                     <p className="text-sm italic">"{story.issue}"</p>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-medium">
+                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-medium">
                         {story.name[0]}
                       </div>
                       <div>
@@ -362,7 +396,7 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-primary text-primary-foreground">
+      <section className="py-16 bg-hero text-hero-foreground">
         <div className="container text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -372,17 +406,17 @@ export default function Index() {
           >
             <Award className="w-16 h-16 mx-auto opacity-90" />
             <h2 className="text-3xl font-bold">Ready to Register Your Grievance?</h2>
-            <p className="text-primary-foreground/80">
+            <p className="text-hero-foreground/80">
               Our AI-powered system ensures your complaint reaches the right department within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/register-complaint">
-                <Button size="lg" variant="secondary" className="gap-2 w-full sm:w-auto">
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground gap-2 w-full sm:w-auto">
                   Register Now <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/track">
-                <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto border-hero-foreground/30 text-hero-foreground hover:bg-hero-foreground/10">
                   Track Existing <Search className="w-4 h-4" />
                 </Button>
               </Link>
