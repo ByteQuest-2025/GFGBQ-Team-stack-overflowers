@@ -14,21 +14,25 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Primary Indigo */
-    --primary: 231 43% 57%;
+    /* Primary Purple/Violet */
+    --primary: 251 48% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 231 50% 65%;
-    --primary-dark: 231 43% 45%;
+    --primary-light: 251 55% 63%;
+    --primary-dark: 251 48% 43%;
+    
+    /* Hero Purple */
+    --hero: 251 48% 58%;
+    --hero-foreground: 0 0% 100%;
 
     /* Secondary Blue */
-    --secondary: 231 43% 75%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
 
-    --accent: 231 50% 95%;
-    --accent-foreground: 231 43% 45%;
+    --accent: 251 50% 95%;
+    --accent-foreground: 251 48% 43%;
 
     /* Status Colors */
     --critical: 0 84% 60%;
@@ -45,7 +49,7 @@
     --success-foreground: 0 0% 100%;
     --warning: 48 96% 53%;
     --warning-foreground: 222 47% 11%;
-    --info: 199 89% 48%;
+    --info: 217 91% 60%;
     --info-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
